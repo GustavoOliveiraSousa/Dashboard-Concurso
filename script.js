@@ -21,23 +21,32 @@ document.getElementById('addBookForm').addEventListener('submit', function (even
     addBookToShelf(materia, link, books.length - 1);
 });
 
-function addBookToShelf(materia, link, index) {
+function addBookToShelf(materia, link) {
     var bookshelf = document.getElementById('bookshelf');
-    var book = document.createElement('a');
-    book.href = link;
-    book.target = '_blank';
+    var book = document.createElement('div');
     book.className = 'book';
-    book.textContent = materia;
+    var linkElement = document.createElement('a');
+    linkElement.href = link;
+    linkElement.target = '_blank';
+    linkElement.textContent = materia;
     var remove = document.createElement('div');
     remove.className = 'remove';
     remove.textContent = 'X';
     remove.addEventListener('click', function (event) {
         event.stopPropagation();
-        bookshelf.removeChild(book);
         var books = JSON.parse(localStorage.getItem('books'));
-        books.splice(index, 1);
-        localStorage.setItem('books', JSON.stringify(books));
+        var bookIndex = books.findIndex(function (book) {
+            return book.materia === materia && book.link === link;
+        });
+        if (bookIndex !== -1) {
+            books.splice(bookIndex, 1);
+            localStorage.setItem('books', JSON.stringify(books));
+        }
+        bookshelf.removeChild(book);
     });
+    book.appendChild(linkElement);
     book.appendChild(remove);
     bookshelf.appendChild(book);
 }
+
+

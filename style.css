@@ -1,12 +1,24 @@
 .book {
-    display: inline-block;
-    width: 33%;
+    /* display: inline-block; */
+    display: flex;
+    width: 100%;
     height: 150px;
-    margin: 10px;
+    /* margin: 10px; */
     background-color: orange;
     color: white;
     text-align: center;
-    line-height: 150px;
+    /* line-height: 150px; */
+    text-decoration: none;
+    border-radius: 5px;
+
+}
+
+.book a {
+    display: flex;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     border-radius: 5px;
 }
@@ -22,7 +34,7 @@
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: -20px;
+    /* margin-top: -20px; */
 }
 
 .book:hover .remove {
@@ -45,10 +57,22 @@
     margin: 20px;
 }
 
+.livros {
+    display: flex;
+    justify-content: center;
+
+}
+
 body {
     background-image: url("./design-de-fundo-preto-ondulado.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     color: white;
+}
+
+#bookshelf {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    gap: 10px;
 }
