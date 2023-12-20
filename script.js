@@ -78,24 +78,10 @@ function addBookToShelf(materia, link) {
     book.appendChild(linkElement);
     book.appendChild(remove);
     bookshelf.appendChild(book);
-}
 
-document.getElementById('addBookForm').addEventListener('submit', function (event) {
-    event.preventDefault();
-    var materia = document.getElementById('materia').value;
-    var link = document.getElementById('link').value;
-
-    // Salvar novo livro no localStorage
-    var books = JSON.parse(localStorage.getItem('books')) || [];
-    books.push({ materia: materia, link: link });
-    localStorage.setItem('books', JSON.stringify(books));
-
-    addBookToShelf(materia, link);
-
-    // Limpar os campos de input
     document.getElementById('materia').value = '';
     document.getElementById('link').value = '';
-});
+}
 
 
 

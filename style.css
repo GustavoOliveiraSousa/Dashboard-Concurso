@@ -49,14 +49,32 @@
 }
 
 .formulario {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 20px;
+
 }
 
-.formulario {
-    margin: 20px;
+.p1,
+.p2 {
+    width: 100%;
 }
+
+.adicionar-materia {
+    border-radius: 5px;
+    border-style: none;
+}
+
+.input-materia,
+.input-link {
+    width: 80%;
+    padding: 20px;
+    border-radius: 15px;
+    border-style: none;
+    margin-bottom: 5px;
+}
+
 
 .livros {
     display: flex;
