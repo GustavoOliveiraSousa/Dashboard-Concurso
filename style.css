@@ -7,6 +7,7 @@
     background-color: orange;
     color: white;
     text-align: center;
+    justify-content: center;
     /* line-height: 150px; */
     text-decoration: none;
     border-radius: 5px;
@@ -14,7 +15,7 @@
 }
 
 .book a {
-    display: flex;
+    display: inline-flex;
     color: white;
     text-align: center;
     justify-content: center;
@@ -34,7 +35,7 @@
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
-    /* margin-top: -20px; */
+    margin-left: -25vw;
 }
 
 .book:hover .remove {
