@@ -1,9 +1,9 @@
 .book {
     display: inline-block;
-    width: 100px;
+    width: 33%;
     height: 150px;
     margin: 10px;
-    background-color: #f4a261;
+    background-color: orange;
     color: white;
     text-align: center;
     line-height: 150px;
@@ -22,6 +22,7 @@
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
+    margin-top: -20px;
 }
 
 .book:hover .remove {
