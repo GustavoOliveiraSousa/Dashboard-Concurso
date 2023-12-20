@@ -1,0 +1,53 @@
+.book {
+    display: inline-block;
+    width: 100px;
+    height: 150px;
+    margin: 10px;
+    background-color: #f4a261;
+    color: white;
+    text-align: center;
+    line-height: 150px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.remove {
+    display: none;
+    position: absolute;
+    background-color: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.book:hover .remove {
+    display: block;
+}
+
+/* ---------------------------------------------------- */
+.titulo {
+    display: flex;
+    justify-content: center;
+}
+
+.formulario {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.formulario {
+    margin: 20px;
+}
+
+body {
+    background-image: url("./design-de-fundo-preto-ondulado.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+}
