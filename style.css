@@ -68,9 +68,11 @@
     width: 100%;
 }
 
-.adicionar-materia {
-    border-radius: 5px;
-    border-style: none;
+.adicionar-materia,
+.export,
+.import {
+    border-radius: 15px;
+    border-style: double;
 }
 
 .input-materia,
@@ -80,8 +82,7 @@
     border-radius: 15px;
     border-style: none;
     margin-bottom: 5px;
-    background-color: black;
-    color: azure;
+    background-color: white
 }
 
 
