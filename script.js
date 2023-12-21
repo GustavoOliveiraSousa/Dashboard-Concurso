@@ -10,7 +10,17 @@ window.onload = function () {
         animation: 150,
         chosenClass: "sortable-chosen",
         dragClass: "sortable-drag",
+        onEnd: function () {
+            var books = Array.from(bookshelf.children).map(function (bookElement) {
+                return {
+                    materia: bookElement.querySelector('a').textContent,
+                    link: bookElement.querySelector('a').href
+                };
+            });
+            localStorage.setItem('books', JSON.stringify(books));
+        }
     });
+
 };
 
 //CRIAÇÃO DO ELEMENTO
