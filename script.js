@@ -1,3 +1,4 @@
+//IMPORTAR DO LOCALSTORAGE AO CARREGAR A PÁGINA
 window.onload = function () {
     var bookshelf = document.getElementById('bookshelf');
     var books = JSON.parse(localStorage.getItem('books')) || [];
@@ -12,6 +13,7 @@ window.onload = function () {
     });
 };
 
+//CRIAÇÃO DO ELEMENTO
 document.getElementById('addBookForm').addEventListener('submit', function (event) {
     event.preventDefault();
     var materia = document.getElementById('materia').value;
@@ -27,6 +29,7 @@ document.getElementById('addBookForm').addEventListener('submit', function (even
     document.getElementById('link').value = '';
 });
 
+//CONFIRMAÇÃO DE EXCLUSÃO E CAPACIDADE DE ARRASTAR E REORDENAR
 function addBookToShelf(materia, link, index) {
     var bookshelf = document.getElementById('bookshelf');
     var book = document.createElement('div');
@@ -62,3 +65,30 @@ function addBookToShelf(materia, link, index) {
     book.appendChild(remove);
     bookshelf.appendChild(book);
 }
+
+//EXPORTAR E IMPORTAR
+document.getElementById('export').addEventListener('click', function () {
+    var books = localStorage.getItem('books');
+    var a = document.createElement('a');
+    a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(books);
+    a.download = 'books.json';
+    a.click();
+});
+
+document.getElementById('import').addEventListener('click', function () {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = function (event) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var books = JSON.parse(event.target.result);
+            localStorage.setItem('books', JSON.stringify(books));
+            location.reload(); // Recarrega a página
+        };
+        reader.readAsText(event.target.files[0]);
+    };
+    input.click();
+});
+
+
