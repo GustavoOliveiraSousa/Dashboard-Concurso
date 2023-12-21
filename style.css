@@ -48,6 +48,12 @@
 .titulo {
     display: flex;
     justify-content: center;
+    color: azure;
+}
+
+.materia,
+.link {
+    color: azure;
 }
 
 .formulario {
@@ -74,6 +80,8 @@
     border-radius: 15px;
     border-style: none;
     margin-bottom: 5px;
+    background-color: black;
+    color: azure;
 }
 
 
@@ -84,11 +92,16 @@
 }
 
 body {
-    background-image: url("./design-de-fundo-preto-ondulado.jpg");
+    /* background-image: url("./design-de-fundo-preto-ondulado.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    color: white;
+    color: white; */
+    /* background: linear-gradient(45deg, #0D3B66, #3C6478, #5F0F40); */
+    background: linear-gradient(45deg, #0D3B66, #5F0F40);
+    background-size: 100%;
+    background-attachment: fixed;
+
 }
 
 #bookshelf {
