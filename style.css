@@ -27,11 +27,11 @@
     font-size: 1em;
     margin: auto;
     /* Centraliza o nome da matéria */
-
-    overflow: hidden;
-    /* Esconde o conteúdo que ultrapassa o limite */
-    text-overflow: ellipsis;
-    /* Adiciona "..." ao final do texto que ultrapassa o limite */
+    padding: 10px;
+    max-width: 100%;
+    /* Limita a largura máxima do elemento ao tamanho do card */
+    box-sizing: border-box;
+    /* Inclui o preenchimento e a borda na largura total do elemento */
 }
 
 
