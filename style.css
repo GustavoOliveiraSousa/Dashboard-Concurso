@@ -1,18 +1,19 @@
 .book {
-    /* display: inline-block; */
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    /* Adicionado para posicionar os botões de edição e remoção */
     width: 100%;
     height: 150px;
-    /* margin: 10px; */
-    /* background-color: orange;
-    color: white; */
+
     text-align: center;
     justify-content: center;
-    /* line-height: 150px; */
+
     text-decoration: none;
     border-radius: 5px;
-
 }
+
 
 .book a {
     display: inline-flex;
@@ -24,9 +25,20 @@
     text-decoration: none;
     border-radius: 5px;
     font-size: 1em;
+    margin: auto;
+    /* Centraliza o nome da matéria */
+
+    overflow: hidden;
+    /* Esconde o conteúdo que ultrapassa o limite */
+    text-overflow: ellipsis;
+    /* Adiciona "..." ao final do texto que ultrapassa o limite */
 }
 
+
 .remove {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: none;
     position: absolute;
     background-color: red;
@@ -37,7 +49,6 @@
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
-    margin-left: -25vw;
 }
 
 .book:hover .remove {
@@ -86,6 +97,9 @@
 }
 
 .edit {
+    position: absolute;
+    top: 0;
+    right: 0;
     padding: 5px;
     margin: 5px;
     height: 10%;

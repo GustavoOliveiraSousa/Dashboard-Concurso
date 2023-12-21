@@ -125,28 +125,6 @@ document.getElementById('import').addEventListener('click', function () {
     input.click();
 });
 
-//ADICIONANDO CAPACIDADE DE ESITAR NOME E LINK DOS CARDS
-// var edit = document.createElement('div');
-// edit.className = 'edit';
-// edit.textContent = 'Editar';
-// edit.addEventListener('click', function (event) {
-//     event.stopPropagation();
-//     var newMateria = prompt('Digite o novo nome da matéria:', materia);
-//     var newLink = prompt('Digite o novo link:', link);
-//     if (newMateria !== null && newLink !== null) {
-//         var books = JSON.parse(localStorage.getItem('books'));
-//         var bookIndex = books.findIndex(function (book) {
-//             return book.materia === materia && book.link === link;
-//         });
-//         if (bookIndex !== -1) {
-//             books[bookIndex] = { materia: newMateria, link: newLink };
-//             localStorage.setItem('books', JSON.stringify(books));
-//             bookshelf.removeChild(book);
-//             addBookToShelf(newMateria, newLink);
-//         }
-//     }
-// });
-// book.appendChild(edit);
 
 
 //COLORIZANDO O CARD DE ACORDO COM SUA LETRA
