@@ -44,6 +44,8 @@ function addBookToShelf(materia, link, index) {
     var bookshelf = document.getElementById('bookshelf');
     var book = document.createElement('div');
     book.className = 'book';
+    //COLORIZANDO CARD DE ACORDO COM LETRA
+    book.style.backgroundColor = colorMap[materia.charAt(0).toLowerCase()] || '#FFFFFF';
     book.draggable = true;
     book.id = 'book-' + index;
 
@@ -101,5 +103,35 @@ document.getElementById('import').addEventListener('click', function () {
     input.click();
 });
 
+
+//COLORIZANDO O CARD DE ACORDO COM SUA LETRA
+var colorMap = {
+    'a': '#FFADAD',
+    'b': '#FFD6A5',
+    'c': '#FDFFB6',
+    'd': '#CAFFBF',
+    'e': '#9BF6FF',
+    'f': '#A0C4FF',
+    'g': '#BDB2FF',
+    'h': '#FFC6FF',
+    'i': '#FFFFFC',
+    'j': '#E5989B',
+    'k': '#6D6875',
+    'l': '#D9A5B3',
+    'm': '#BC6C25',
+    'n': '#D64161',
+    'o': '#FF7F50',
+    'p': '#B39C8D',
+    'q': '#218380',
+    'r': '#6D597A',
+    's': '#FFA500',
+    't': '#BFD7EA',
+    'u': '#6A057F',
+    'v': '#FFD700',
+    'w': '#9E2A2B',
+    'x': '#540B0E',
+    'y': '#D3F8E2',
+    'z': '#E4C1F9'
+};
 
 
