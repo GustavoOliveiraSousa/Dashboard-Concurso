@@ -32,6 +32,7 @@
     /* Limita a largura máxima do elemento ao tamanho do card */
     box-sizing: border-box;
     /* Inclui o preenchimento e a borda na largura total do elemento */
+
 }
 
 
@@ -52,6 +53,18 @@
 }
 
 .book:hover .remove {
+    display: block;
+}
+
+.edit {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* restante do seu código */
+}
+
+.book:hover .edit {
     display: block;
 }
 
