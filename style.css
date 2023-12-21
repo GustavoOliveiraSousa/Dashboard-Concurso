@@ -85,6 +85,24 @@
     background-color: white
 }
 
+.edit {
+    padding: 5px;
+    margin: 5px;
+    height: 10%;
+    background-color: #4CAF50;
+    /* verde */
+    color: white;
+    /* texto branco */
+    text-align: center;
+    cursor: pointer;
+    border-radius: 12px;
+    /* bordas arredondadas */
+}
+
+/* Muda a cor de fundo quando o mouse passa por cima */
+.edit:hover {
+    background-color: #45a049;
+}
 
 .livros {
     display: flex;
