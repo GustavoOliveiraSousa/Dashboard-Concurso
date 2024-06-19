@@ -169,6 +169,22 @@
 
 }
 
+/* Opacidade do Livro */
+.completed {
+    opacity: 0.2;
+}
+
+
+/* Botão de concluir */
+.complete {
+    opacity: 0;
+}
+
+/* Botão de concluir */
+.complete:hover {
+    opacity: 1;
+}
+
 body {
     /* background-image: url("./design-de-fundo-preto-ondulado.jpg");
     background-repeat: no-repeat;

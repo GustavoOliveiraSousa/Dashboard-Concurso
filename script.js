@@ -3,7 +3,7 @@ window.onload = function () {
     var bookshelf = document.getElementById('bookshelf');
     var books = JSON.parse(localStorage.getItem('books')) || [];
     books.forEach(function (book, index) {
-        addBookToShelf(book.materia, book.link, index);
+        addBookToShelf(book.materia, book.link, index, book.completed);
     });
 
     new Sortable(bookshelf, {
@@ -14,7 +14,8 @@ window.onload = function () {
             var books = Array.from(bookshelf.children).map(function (bookElement) {
                 return {
                     materia: bookElement.querySelector('a').textContent,
-                    link: bookElement.querySelector('a').href
+                    link: bookElement.querySelector('a').href,
+                    completed: bookElement.classList.contains('completed')
                 };
             });
             localStorage.setItem('books', JSON.stringify(books));
@@ -23,28 +24,30 @@ window.onload = function () {
 
 };
 
-//CRIAÇÃO DO ELEMENTO
+// CRIAÇÃO DO ELEMENTO
 document.getElementById('addBookForm').addEventListener('submit', function (event) {
     event.preventDefault();
     var materia = document.getElementById('materia').value;
     var link = document.getElementById('link').value;
 
     var books = JSON.parse(localStorage.getItem('books')) || [];
-    books.push({ materia: materia, link: link });
+    books.push({ materia: materia, link: link, completed: false });
     localStorage.setItem('books', JSON.stringify(books));
 
-    addBookToShelf(materia, link, books.length - 1);
+    addBookToShelf(materia, link, books.length - 1, false);
 
     document.getElementById('materia').value = '';
     document.getElementById('link').value = '';
 });
 
-//CONFIRMAÇÃO DE EXCLUSÃO E CAPACIDADE DE ARRASTAR E REORDENAR
-function addBookToShelf(materia, link, index) {
+// FUNÇÃO PARA ADICIONAR LIVRO NA ESTANTE
+function addBookToShelf(materia, link, index, completed) {
     var bookshelf = document.getElementById('bookshelf');
     var book = document.createElement('div');
     book.className = 'book';
-    //COLORIZANDO CARD DE ACORDO COM LETRA
+    if (completed) {
+        book.classList.add('completed');
+    }
     book.style.backgroundColor = colorMap[materia.charAt(0).toLowerCase()] || '#FFFFFF';
     book.draggable = true;
     book.id = 'book-' + index;
@@ -86,44 +89,32 @@ function addBookToShelf(materia, link, index) {
                 return book.materia === materia && book.link === link;
             });
             if (bookIndex !== -1) {
-                books[bookIndex] = { materia: newMateria, link: newLink };
+                books[bookIndex] = { materia: newMateria, link: newLink, completed: book.classList.contains('completed') };
                 localStorage.setItem('books', JSON.stringify(books));
                 bookshelf.removeChild(book);
-                addBookToShelf(newMateria, newLink);
+                addBookToShelf(newMateria, newLink, bookIndex, books[bookIndex].completed);
             }
         }
+    });
+
+    var completeButton = document.createElement('button');
+    completeButton.textContent = 'Concluir';
+    completeButton.className = 'complete';
+    completeButton.addEventListener('click', function (event) {
+        event.stopPropagation();
+        book.classList.toggle('completed');
+        var completed = book.classList.contains('completed');
+        var books = JSON.parse(localStorage.getItem('books'));
+        books[index].completed = completed;
+        localStorage.setItem('books', JSON.stringify(books));
     });
 
     book.appendChild(linkElement);
     book.appendChild(remove);
     book.appendChild(edit);
+    book.appendChild(completeButton);
     bookshelf.appendChild(book);
 }
-
-//EXPORTAR E IMPORTAR
-document.getElementById('export').addEventListener('click', function () {
-    var books = localStorage.getItem('books');
-    var a = document.createElement('a');
-    a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(books);
-    a.download = 'books.json';
-    a.click();
-});
-
-document.getElementById('import').addEventListener('click', function () {
-    var input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.json';
-    input.onchange = function (event) {
-        var reader = new FileReader();
-        reader.onload = function (event) {
-            var books = JSON.parse(event.target.result);
-            localStorage.setItem('books', JSON.stringify(books));
-            location.reload(); // Recarrega a página
-        };
-        reader.readAsText(event.target.files[0]);
-    };
-    input.click();
-});
 
 // Função para pesquisar matérias
 function searchMateria(searchText) {
@@ -132,20 +123,18 @@ function searchMateria(searchText) {
         return book.materia.toLowerCase().includes(searchText.toLowerCase());
     });
 
-    // Limpa a estante antes de adicionar os resultados filtrados
     document.getElementById('bookshelf').innerHTML = '';
 
-    // Adiciona os livros filtrados à estante
     filteredBooks.forEach(function (book, index) {
-        addBookToShelf(book.materia, book.link, index);
+        addBookToShelf(book.materia, book.link, index, book.completed);
     });
 }
 
-// Evento para capturar a digitação no campo de pesquisa
 document.getElementById('searchInput').addEventListener('input', function (event) {
     var searchText = event.target.value;
     searchMateria(searchText);
 });
+
 
 //COLORIZANDO O CARD DE ACORDO COM SUA LETRA
 var colorMap = {
@@ -176,8 +165,3 @@ var colorMap = {
     'y': '#D3F8E2',
     'z': '#E4C1F9'
 };
-
-
-
-
-
