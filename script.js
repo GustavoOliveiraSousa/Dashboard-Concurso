@@ -125,7 +125,27 @@ document.getElementById('import').addEventListener('click', function () {
     input.click();
 });
 
+// Função para pesquisar matérias
+function searchMateria(searchText) {
+    var books = JSON.parse(localStorage.getItem('books')) || [];
+    var filteredBooks = books.filter(function (book) {
+        return book.materia.toLowerCase().includes(searchText.toLowerCase());
+    });
 
+    // Limpa a estante antes de adicionar os resultados filtrados
+    document.getElementById('bookshelf').innerHTML = '';
+
+    // Adiciona os livros filtrados à estante
+    filteredBooks.forEach(function (book, index) {
+        addBookToShelf(book.materia, book.link, index);
+    });
+}
+
+// Evento para capturar a digitação no campo de pesquisa
+document.getElementById('searchInput').addEventListener('input', function (event) {
+    var searchText = event.target.value;
+    searchMateria(searchText);
+});
 
 //COLORIZANDO O CARD DE ACORDO COM SUA LETRA
 var colorMap = {
@@ -156,5 +176,8 @@ var colorMap = {
     'y': '#D3F8E2',
     'z': '#E4C1F9'
 };
+
+
+
 
 

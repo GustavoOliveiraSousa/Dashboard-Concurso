@@ -84,7 +84,7 @@
     display: inline-flex;
     flex-direction: row;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .p1,
@@ -106,6 +106,7 @@
     border-radius: 15px;
     border-style: none;
     margin-bottom: 5px;
+    margin-right: 10px;
     background-color: white
 }
 
@@ -129,6 +130,37 @@
 /* Muda a cor de fundo quando o mouse passa por cima */
 .edit:hover {
     background-color: #45a049;
+}
+
+/* Estilo para o container de pesquisa */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    /* Espaçamento abaixo do formulário */
+    width: 100%;
+    /* Garante que o container ocupe toda a largura */
+}
+
+/* Estilo para o campo de entrada de pesquisa */
+#searchInput {
+    width: calc(100% - 40px);
+    /* Subtrai o padding para ocupar toda a largura */
+    padding: 20px;
+    border-radius: 15px;
+    border-style: none;
+    background-color: white;
+    font-size: 1em;
+    /* Tamanho da fonte igual ao dos links nos cards */
+    margin: auto;
+    /* Centraliza o campo de entrada dentro do container */
+}
+
+/* Estilo para a label do campo de pesquisa */
+.search-container label {
+    color: azure;
+    margin-right: 10px;
+    /* Espaçamento entre a label e o campo de entrada */
 }
 
 .livros {
