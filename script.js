@@ -119,6 +119,7 @@ function addBookToShelf(materia, link, index, completed) {
     updateButtonVisibility();
 }
 
+
 document.getElementById('export').addEventListener('click', function () {
     var books = localStorage.getItem('books');
     var a = document.createElement('a');
