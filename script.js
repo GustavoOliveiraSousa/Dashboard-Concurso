@@ -40,9 +40,9 @@ document.getElementById('addBookForm').addEventListener('submit', function (even
     document.getElementById('link').value = '';
 });
 
-function addBookToShelf(materia, link, index, completed) {
+function addBookToShelf(materia, link, index, completed, bookElement) {
     var bookshelf = document.getElementById('bookshelf');
-    var book = document.createElement('div');
+    var book = bookElement || document.createElement('div');
     book.className = 'book';
     book.style.backgroundColor = colorMap[materia.charAt(0).toLowerCase()] || '#FFFFFF';
     book.draggable = true;
@@ -51,6 +51,8 @@ function addBookToShelf(materia, link, index, completed) {
     if (completed) {
         book.classList.add('completed');
     }
+
+    book.innerHTML = ''; // Clear existing content
 
     var linkElement = document.createElement('a');
     linkElement.href = link;
@@ -91,8 +93,7 @@ function addBookToShelf(materia, link, index, completed) {
             if (bookIndex !== -1) {
                 books[bookIndex] = { materia: newMateria, link: newLink, completed: books[bookIndex].completed };
                 localStorage.setItem('books', JSON.stringify(books));
-                bookshelf.removeChild(book);
-                addBookToShelf(newMateria, newLink, bookIndex, books[bookIndex].completed);
+                addBookToShelf(newMateria, newLink, bookIndex, books[bookIndex].completed, book);
             }
         }
     });
@@ -113,7 +114,10 @@ function addBookToShelf(materia, link, index, completed) {
     book.appendChild(remove);
     book.appendChild(edit);
     book.appendChild(complete);
-    bookshelf.appendChild(book);
+
+    if (!bookElement) {
+        bookshelf.appendChild(book);
+    }
 
     // Atualizar visibilidade dos botões
     updateButtonVisibility();
